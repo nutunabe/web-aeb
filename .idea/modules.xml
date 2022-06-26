@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/traineemanager/traineemanager.iml" filepath="$PROJECT_DIR$/traineemanager/traineemanager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/web-aeb.iml" filepath="$PROJECT_DIR$/.idea/web-aeb.iml" />
-    </modules>
-  </component>
-</project>
