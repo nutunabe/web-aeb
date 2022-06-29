@@ -2,42 +2,65 @@ package ru.albank.trainee.traineemanager.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Arrays;
 
 @Entity
 public class Resume implements Serializable {
-    // Ключ
+    // Идентификатор (является главным ключом)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
     // Имя
-    private String name;
+    private String firstName;
     // Фамилия
-    private String surname;
+    private String secondName;
     // Отчество
     private String patronymic;
-    // Адрес
-    private String address;
-    // Электронный адрес
+    // День рождения
+    private LocalDate birthdate;
+    // Электронная почта
     private String email;
-    // Телефонный номер
+    // Номер телефона
     private String phoneNumber;
-    // Институт
-    private String institute;
-    // Группа (Поменял с "group" на "eduGroup" из-за какого-то странного конфликта, который не позволял создать таблицу)
-    private String eduGroup;
+    // Образование
+    private String [] education;
+    // Учебные работы
+    private String eduWorks;
+    // Цель
+    private String goal;
+    // Опыт работы
+    private String expWork;
+    // Опыт прохождения практик
+    private String expPractice;
+    // Soft skills
+    private String softSkills;
+    // Hard skills
+    private String hardSkills;
+    // Знание языков
+    private String langKnowledge;
+    // Ссылка на изображение
+    private String imgUrl;
 
     public Resume() {}
 
-    public Resume(String name, String surname, String patronymic, String address, String email, String phoneNumber, String institute, String eduGroup) {
-        this.name = name;
-        this.surname = surname;
+    public Resume(String firstName, String secondName, String patronymic, LocalDate birthdate, String email, String phoneNumber, String[] education, String eduWorks, String goal, String expWork, String expPractice, String softSkills, String hardSkills, String langKnowledge, String imgUrl) {
+        this.firstName = firstName;
+        this.secondName = secondName;
         this.patronymic = patronymic;
-        this.address = address;
+        this.birthdate = birthdate;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.institute = institute;
-        this.eduGroup = eduGroup;
+        this.education = education;
+        this.eduWorks = eduWorks;
+        this.goal = goal;
+        this.expWork = expWork;
+        this.expPractice = expPractice;
+        this.softSkills = softSkills;
+        this.hardSkills = hardSkills;
+        this.langKnowledge = langKnowledge;
+        this.imgUrl = imgUrl;
     }
 
     public Long getId() {
@@ -48,20 +71,20 @@ public class Resume implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public String getPatronymic() {
@@ -72,12 +95,12 @@ public class Resume implements Serializable {
         this.patronymic = patronymic;
     }
 
-    public String getAddress() {
-        return address;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public String getEmail() {
@@ -96,34 +119,98 @@ public class Resume implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getInstitute() {
-        return institute;
+    public String[] getEducation() {
+        return education;
     }
 
-    public void setInstitute(String institute) {
-        this.institute = institute;
+    public void setEducation(String[] education) {
+        this.education = education;
     }
 
-    public String getEduGroup() {
-        return eduGroup;
+    public String getEduWorks() {
+        return eduWorks;
     }
 
-    public void setEduGroup(String eduGroup) {
-        this.eduGroup = eduGroup;
+    public void setEduWorks(String eduWorks) {
+        this.eduWorks = eduWorks;
+    }
+
+    public String getGoal() {
+        return goal;
+    }
+
+    public void setGoal(String goal) {
+        this.goal = goal;
+    }
+
+    public String getExpWork() {
+        return expWork;
+    }
+
+    public void setExpWork(String expWork) {
+        this.expWork = expWork;
+    }
+
+    public String getExpPractice() {
+        return expPractice;
+    }
+
+    public void setExpPractice(String expPractice) {
+        this.expPractice = expPractice;
+    }
+
+    public String getSoftSkills() {
+        return softSkills;
+    }
+
+    public void setSoftSkills(String softSkills) {
+        this.softSkills = softSkills;
+    }
+
+    public String getHardSkills() {
+        return hardSkills;
+    }
+
+    public void setHardSkills(String hardSkills) {
+        this.hardSkills = hardSkills;
+    }
+
+    public String getLangKnowledge() {
+        return langKnowledge;
+    }
+
+    public void setLangKnowledge(String langKnowledge) {
+        this.langKnowledge = langKnowledge;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
     @Override
     public String toString() {
         return "Resume {" +
                 "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
                 ", patronymic='" + patronymic + '\'' +
-                ", address='" + address + '\'' +
+                ", birthdate='" + birthdate + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", institute='" + institute + '\'' +
-                ", eduGroup='" + eduGroup + '\'' +
+                ", education='" + Arrays.toString(education) + '\'' +
+                ", eduWorks='" + eduWorks + '\'' +
+                ", goal='" + goal + '\'' +
+                ", expWork='" + expWork + '\'' +
+                ", expPractice='" + expPractice + '\'' +
+                ", softSkills='" + softSkills + '\'' +
+                ", hardSkills='" + hardSkills + '\'' +
+                ", langKnowledge='" + langKnowledge + '\'' +
+                ", imgUrl='" + imgUrl + '\'' +
                 '}';
     }
 }
+
