@@ -1,22 +1,38 @@
 package ru.albank.trainee.traineemanager.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "usr")
+@Table(name = "usr",
+    uniqueConstraints = {
+            @UniqueConstraint(columnNames = "username"),
+            @UniqueConstraint(columnNames = "email")
+    })
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String username;
+    private String email;
     private String password;
-    private boolean active;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-    @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    //private boolean resume;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
+
+    public User() {}
+
+    public User(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;
@@ -34,6 +50,14 @@ public class User {
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -42,13 +66,13 @@ public class User {
         this.password = password;
     }
 
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
+//    public boolean isResume() {
+//        return resume;
+//    }
+//
+//    public void setResume(boolean resume) {
+//        this.resume = resume;
+//    }
 
     public Set<Role> getRoles() {
         return roles;
