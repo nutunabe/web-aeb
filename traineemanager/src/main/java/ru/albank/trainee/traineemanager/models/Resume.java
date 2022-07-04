@@ -42,10 +42,16 @@ public class Resume implements Serializable {
     private String langKnowledge;
     // Ссылка на изображение
     private String imgUrl;
+    //учебная группа
+    private String eduGroup;
 
     public Resume() {}
 
-    public Resume(String firstName, String secondName, String patronymic, LocalDate birthdate, String email, String phoneNumber, String[] education, String eduWorks, String goal, String expWork, String expPractice, String softSkills, String hardSkills, String langKnowledge, String imgUrl) {
+    public Resume(String firstName, String secondName, String patronymic,
+                  LocalDate birthdate, String email, String phoneNumber,
+                  String[] education, String eduWorks, String goal, String expWork,
+                  String expPractice, String softSkills, String hardSkills,
+                  String langKnowledge, String imgUrl, String eduGroup) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.patronymic = patronymic;
@@ -61,6 +67,7 @@ public class Resume implements Serializable {
         this.hardSkills = hardSkills;
         this.langKnowledge = langKnowledge;
         this.imgUrl = imgUrl;
+        this.eduGroup = eduGroup;
     }
 
     public Long getId() {
@@ -191,6 +198,14 @@ public class Resume implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    public String getEduGroup() {
+        return eduGroup;
+    }
+
+    public void setEduGroup(String eduGroup) {
+        this.eduGroup = eduGroup;
+    }
+
     @Override
     public String toString() {
         return "Resume {" +
@@ -210,6 +225,7 @@ public class Resume implements Serializable {
                 ", hardSkills='" + hardSkills + '\'' +
                 ", langKnowledge='" + langKnowledge + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
+                ", eduGroup='" + eduGroup + '\'' +
                 '}';
     }
 }
