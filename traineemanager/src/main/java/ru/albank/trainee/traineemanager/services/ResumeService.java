@@ -3,6 +3,7 @@ package ru.albank.trainee.traineemanager.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.albank.trainee.traineemanager.exceptions.IdNotFoundException;
+import ru.albank.trainee.traineemanager.models.EResumeStatus;
 import ru.albank.trainee.traineemanager.models.Resume;
 import ru.albank.trainee.traineemanager.repo.ResumeRepo;
 
@@ -29,6 +30,7 @@ public class ResumeService {
     }
 
     public Resume addResume(Resume resume) {
+        resume.setResumeStatus(EResumeStatus.STATUS_NOT_CHECKED);
         return resumeRepo.save(resume);
     }
 

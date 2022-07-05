@@ -44,6 +44,8 @@ public class Resume implements Serializable {
     private String imgUrl;
     //учебная группа
     private String eduGroup;
+    // Статус резюме
+    private EResumeStatus resumeStatus;
 
     public Resume() {}
 
@@ -51,7 +53,7 @@ public class Resume implements Serializable {
                   LocalDate birthdate, String email, String phoneNumber,
                   String[] education, String eduWorks, String goal, String expWork,
                   String expPractice, String softSkills, String hardSkills,
-                  String langKnowledge, String imgUrl, String eduGroup) {
+                  String langKnowledge, String imgUrl, String eduGroup, EResumeStatus resumeStatus) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.patronymic = patronymic;
@@ -68,6 +70,7 @@ public class Resume implements Serializable {
         this.langKnowledge = langKnowledge;
         this.imgUrl = imgUrl;
         this.eduGroup = eduGroup;
+        this.resumeStatus = resumeStatus;
     }
 
     public Long getId() {
@@ -206,6 +209,14 @@ public class Resume implements Serializable {
         this.eduGroup = eduGroup;
     }
 
+    public EResumeStatus getResumeStatus() {
+        return resumeStatus;
+    }
+
+    public void setResumeStatus(EResumeStatus resumeStatus) {
+        this.resumeStatus = resumeStatus;
+    }
+
     @Override
     public String toString() {
         return "Resume {" +
@@ -226,6 +237,7 @@ public class Resume implements Serializable {
                 ", langKnowledge='" + langKnowledge + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", eduGroup='" + eduGroup + '\'' +
+                ", resumeStatus='" + resumeStatus + '\'' +
                 '}';
     }
 }
