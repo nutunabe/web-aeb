@@ -8,6 +8,7 @@ import ru.albank.trainee.traineemanager.services.ResumeService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/controllers/resume")
 public class ResumeController {
