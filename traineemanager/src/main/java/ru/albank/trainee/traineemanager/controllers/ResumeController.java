@@ -30,12 +30,6 @@ public class ResumeController {
         return new ResponseEntity<>(resume, HttpStatus.OK);
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Resume> addResume(@RequestBody Resume resume) {
-        Resume newResume = resumeService.addResume(resume);
-        return new ResponseEntity<>(newResume, HttpStatus.CREATED);
-    }
-
     @PutMapping("/update")
     public ResponseEntity<Resume> updateResume(@RequestBody Resume resume) {
         Resume updatedResume = resumeService.updateResume(resume);

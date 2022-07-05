@@ -10,14 +10,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import ru.albank.trainee.traineemanager.config.jwt.JwtUtils;
 import ru.albank.trainee.traineemanager.models.ERole;
+import ru.albank.trainee.traineemanager.models.Resume;
 import ru.albank.trainee.traineemanager.models.Role;
 import ru.albank.trainee.traineemanager.models.User;
 import ru.albank.trainee.traineemanager.pojo.JwtResponse;
 import ru.albank.trainee.traineemanager.pojo.LoginRequest;
 import ru.albank.trainee.traineemanager.pojo.MessageResponse;
 import ru.albank.trainee.traineemanager.pojo.SignupRequest;
+import ru.albank.trainee.traineemanager.repo.ResumeRepo;
 import ru.albank.trainee.traineemanager.repo.RoleRepo;
 import ru.albank.trainee.traineemanager.repo.UserRepo;
+import ru.albank.trainee.traineemanager.services.ResumeService;
 import ru.albank.trainee.traineemanager.services.UserDetailsImpl;
 
 import java.util.HashSet;
@@ -37,6 +40,9 @@ public class AuthController {
 
     @Autowired
     RoleRepo roleRepo;
+
+    @Autowired
+    ResumeService resumeService;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -122,6 +128,11 @@ public class AuthController {
             });
         }
         user.setRoles(roles);
+
+        Resume newResume = new Resume();
+        user.setResume(newResume);
+        resumeService.addResume(newResume);
+
         userRepo.save(user);
         return ResponseEntity.ok(new MessageResponse("User CREATED"));
     }

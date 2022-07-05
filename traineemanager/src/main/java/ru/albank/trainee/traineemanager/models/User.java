@@ -1,5 +1,7 @@
 package ru.albank.trainee.traineemanager.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,7 +19,10 @@ public class User {
     private String username;
     private String email;
     private String password;
-
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "resume_id", referencedColumnName = "id")
+    @JsonBackReference
+    private Resume resume;
     //private boolean resume;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -66,13 +71,13 @@ public class User {
         this.password = password;
     }
 
-//    public boolean isResume() {
-//        return resume;
-//    }
-//
-//    public void setResume(boolean resume) {
-//        this.resume = resume;
-//    }
+    public Resume getResume() {
+        return resume;
+    }
+
+    public void setResume(Resume resume) {
+        this.resume = resume;
+    }
 
     public Set<Role> getRoles() {
         return roles;
@@ -80,5 +85,17 @@ public class User {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @Override
+    public String toString() {
+        return "\nUser{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", resume=" + resume +
+                ", roles=" + roles +
+                '}';
     }
 }

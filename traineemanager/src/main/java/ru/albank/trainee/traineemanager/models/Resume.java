@@ -1,5 +1,7 @@
 package ru.albank.trainee.traineemanager.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -12,6 +14,10 @@ public class Resume implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
+    //Внешний ключ (пользователь)
+    @OneToOne(mappedBy = "resume")
+    @JsonManagedReference
+    private User user;
     // Имя
     private String firstName;
     // Фамилия
@@ -49,11 +55,12 @@ public class Resume implements Serializable {
 
     public Resume() {}
 
-    public Resume(String firstName, String secondName, String patronymic,
-                  LocalDate birthdate, String email, String phoneNumber,
-                  String[] education, String eduWorks, String goal, String expWork,
-                  String expPractice, String softSkills, String hardSkills,
-                  String langKnowledge, String imgUrl, String eduGroup, EResumeStatus resumeStatus) {
+    public Resume(String firstName, String secondName,
+                  String patronymic, LocalDate birthdate, String email,
+                  String phoneNumber, String[] education, String eduWorks,
+                  String goal, String expWork, String expPractice,
+                  String softSkills, String hardSkills, String langKnowledge,
+                  String imgUrl, String eduGroup, EResumeStatus resumeStatus) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.patronymic = patronymic;
@@ -79,6 +86,14 @@ public class Resume implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getFirstName() {
@@ -219,15 +234,15 @@ public class Resume implements Serializable {
 
     @Override
     public String toString() {
-        return "Resume {" +
+        return "Resume{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", secondName='" + secondName + '\'' +
                 ", patronymic='" + patronymic + '\'' +
-                ", birthdate='" + birthdate + '\'' +
+                ", birthdate=" + birthdate +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", education='" + Arrays.toString(education) + '\'' +
+                ", education=" + Arrays.toString(education) +
                 ", eduWorks='" + eduWorks + '\'' +
                 ", goal='" + goal + '\'' +
                 ", expWork='" + expWork + '\'' +
@@ -237,7 +252,7 @@ public class Resume implements Serializable {
                 ", langKnowledge='" + langKnowledge + '\'' +
                 ", imgUrl='" + imgUrl + '\'' +
                 ", eduGroup='" + eduGroup + '\'' +
-                ", resumeStatus='" + resumeStatus + '\'' +
+                ", resumeStatus=" + resumeStatus +
                 '}';
     }
 }
