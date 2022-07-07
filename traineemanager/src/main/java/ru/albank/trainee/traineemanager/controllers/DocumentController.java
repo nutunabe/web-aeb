@@ -14,6 +14,7 @@ import ru.albank.trainee.traineemanager.services.DocumentService;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/")
 public class DocumentController {
@@ -28,7 +29,7 @@ public class DocumentController {
         String fileName = documentService.storeFile(file, userId, docType);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/download?userId=")
+                .path("api/download?userId=")
                 .path(String.valueOf(userId))
                 .path("&docType=")
                 .path(docType)
